@@ -310,7 +310,9 @@ ru.PGE_ChanLab =Лаборатория (Свежие экспериментал�
 var
     UpdateChannelPage: TInputOptionWizardPage;
     UpdateChannelId: Integer;
+    IsAlreadyInstalled: Boolean;
 
+// IfThen implementation (Pascal has no ternary operations :-P)
 function IfThen(ACondition: Boolean; ATrue: string; AFalse: string): string;
 var Res : string;
 begin
@@ -329,6 +331,7 @@ var
     ResultCode: Integer;
 begin
     UpdateChannelId := 0;
+    IsAlreadyInstalled := False;
     verFile := ExpandConstant('{tmp}\installer_version.txt');
     idpDownloadFile('{#INSTALLER_VERSION_CHECK}', verFile);
     if (FileExists(verFile)) then
@@ -357,8 +360,8 @@ end;
 procedure InitializeWizard;
 begin
     UpdateChannelPage := CreateInputOptionPage(wpSelectComponents,
-      ExpandConstant('{cm:PGE_UpdateChannel}'), ExpandConstant('{cm:PGE_UpdateChannelDesc}'),
-      ExpandConstant('{cm:PGE_UpdateChannelDetail}'), True, False);
+                            ExpandConstant('{cm:PGE_UpdateChannel}'), ExpandConstant('{cm:PGE_UpdateChannelDesc}'),
+                            ExpandConstant('{cm:PGE_UpdateChannelDetail}'), True, False);
     UpdateChannelPage.Add(ExpandConstant('{cm:PGE_ChanRelease}'));
     UpdateChannelPage.Add(ExpandConstant('{cm:PGE_ChanLab}'));
 
@@ -368,57 +371,69 @@ begin
     else
         UpdateChannelPage.SelectedValueIndex := 0;
     end;
+    IsAlreadyInstalled := GetPreviousData('PrevInstallerVersion', '') <> '';
+end;
+
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+    case PageID of
+        wpLicense:      Result := IsAlreadyInstalled;
+        wpSelectDir:    Result := IsAlreadyInstalled;
+        wpSelectProgramGroup: Result := IsAlreadyInstalled;
+    else
+        Result := False;
+    end;
 end;
 
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
     UpdateChannel: String;
 begin
-  { Validate certain pages before allowing the user to proceed }
-  if CurPageID = UpdateChannelPage.ID then begin
-      UpdateChannelId := UpdateChannelPage.SelectedValueIndex
-      case UpdateChannelPage.SelectedValueIndex of
-          0: UpdateChannel := 'stable';
-          1: UpdateChannel := 'laboratory';
-      end;
+    { Validate certain pages before allowing the user to proceed }
+    if CurPageID = UpdateChannelPage.ID then begin
+        UpdateChannelId := UpdateChannelPage.SelectedValueIndex
+        case UpdateChannelPage.SelectedValueIndex of
+            0: UpdateChannel := 'stable';
+            1: UpdateChannel := 'laboratory';
+        end;
 
-      if UpdateChannelId = 0 then
-      begin
-          idpClearFiles();
-          idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_COMMON64}', '{#FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
-          idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_EDITOR64}', '{#FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
-          idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_TOOLS64}',  '{#FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
-          idpAddFileComp('{#FILE_URL_HELP}',      ExpandConstant('{tmp}\help.zip'),    'devkit\help');
-          idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_ENGINE64}', '{#FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
+        if UpdateChannelId = 0 then
+        begin
+            idpClearFiles();
+            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_COMMON64}', '{#FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
+            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_EDITOR64}', '{#FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
+            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_TOOLS64}',  '{#FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
+            idpAddFileComp('{#FILE_URL_HELP}',      ExpandConstant('{tmp}\help.zip'),    'devkit\help');
+            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_ENGINE64}', '{#FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
 
-          idpAddFileComp('{#FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
-          idpAddFileComp('{#FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
-          idpAddFileComp('{#FILE_URL_CONFIG_SMBX13}',  ExpandConstant('{tmp}\config-smbx13.zip'),         'configs\smbx13');
-          idpAddFileComp('{#FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');
-          idpAddFileComp('{#FILE_URL_CONFIG_SMBXPANDED}',  ExpandConstant('{tmp}\config-smbxpanded.zip'), 'configs\smbxpanded');
-          idpAddFileComp('{#FILE_URL_CONFIG_SMBX38A}', ExpandConstant('{tmp}\config-smbx38a.zip'),        'configs\smbx38a');
-          idpDownloadAfter(wpReady);
-      end else
+            idpAddFileComp('{#FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
+            idpAddFileComp('{#FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
+            idpAddFileComp('{#FILE_URL_CONFIG_SMBX13}',  ExpandConstant('{tmp}\config-smbx13.zip'),         'configs\smbx13');
+            idpAddFileComp('{#FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');
+            idpAddFileComp('{#FILE_URL_CONFIG_SMBXPANDED}',  ExpandConstant('{tmp}\config-smbxpanded.zip'), 'configs\smbxpanded');
+            idpAddFileComp('{#FILE_URL_CONFIG_SMBX38A}', ExpandConstant('{tmp}\config-smbx38a.zip'),        'configs\smbx38a');
+            idpDownloadAfter(wpReady);
+        end else
 
-      if UpdateChannelId = 1 then
-      begin
-          idpClearFiles();
-          idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_COMMON64}', '{#LAB_FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
-          idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_EDITOR64}', '{#LAB_FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
-          idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_TOOLS64}',  '{#LAB_FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
-          idpAddFileComp('{#LAB_FILE_URL_HELP}',      ExpandConstant('{tmp}\help.zip'),    'devkit\help');
-          idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_ENGINE64}', '{#LAB_FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
+        if UpdateChannelId = 1 then
+        begin
+            idpClearFiles();
+            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_COMMON64}', '{#LAB_FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
+            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_EDITOR64}', '{#LAB_FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
+            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_TOOLS64}',  '{#LAB_FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
+            idpAddFileComp('{#LAB_FILE_URL_HELP}',      ExpandConstant('{tmp}\help.zip'),    'devkit\help');
+            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_ENGINE64}', '{#LAB_FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
 
-          idpAddFileComp('{#LAB_FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
-          idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
-          idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBX13}',  ExpandConstant('{tmp}\config-smbx13.zip'),         'configs\smbx13');
-          idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');
-          idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXPANDED}',  ExpandConstant('{tmp}\config-smbxpanded.zip'), 'configs\smbxpanded');
-          idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBX38A}', ExpandConstant('{tmp}\config-smbx38a.zip'),        'configs\smbx38a');
-          idpDownloadAfter(wpReady);
-      end;
-  end;
-  Result := True;
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBX13}',  ExpandConstant('{tmp}\config-smbx13.zip'),         'configs\smbx13');
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXPANDED}',  ExpandConstant('{tmp}\config-smbxpanded.zip'), 'configs\smbxpanded');
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBX38A}', ExpandConstant('{tmp}\config-smbx38a.zip'),        'configs\smbx38a');
+            idpDownloadAfter(wpReady);
+        end;
+    end;
+    Result := True;
 end;
 
 procedure RegisterPreviousData(PreviousDataKey: Integer);
@@ -432,4 +447,5 @@ begin
     end;
     // MsgBox(UpdateChannel, mbError, MB_OK);
     SetPreviousData(PreviousDataKey, 'UpdateChannel', UpdateChannel);
+    SetPreviousData(PreviousDataKey, 'PrevInstallerVersion', '{#INSTALLER_VERSION}');
 end;
