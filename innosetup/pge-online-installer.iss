@@ -101,11 +101,66 @@ Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
 #include <idplang\Russian.iss>
 #include <idplang\Spanish.iss>
 
+; == Translations credits ==
+; English - Wohlstand
+; German - <Google-translator>
+; Polish - <Google-translator>
+; Portuguese - <Google-translator>
+; Russian - Wohlstand
+; Spanish - Yoshi021
+[CustomMessages]
+en.PGE_NewInstaller =New version of online installer has been detected. Do you want to download and start it?
+de.PGE_NewInstaller =Neue Version des Online-Installers wurde erkannt. Möchten Sie herunterladen und starten?
+pl.PGE_NewInstaller =Znaleziono nową wersję instalatora online. Czy chcesz go pobrać i uruchomić?
+ru.PGE_NewInstaller =Найдена новая версия онлайн-установщика. Хотите загрузить его и запустить?
+es.PGE_NewInstaller =Se ha detectado una nueva versión del instalador en línea. ¿Desea descargarlo?
+
+en.PGE_CantConnect  =Can't connect to remote server! Please check your internet connection and try to start this setup again.
+de.PGE_CantConnect  =Kann keine Verbindung zum Remote-Server herstellen! Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie, dieses Setup erneut zu starten.
+pl.PGE_CantConnect  =Nie można połączyć się z serwerem zdalnym! Sprawdź połączenie z Internetem i spróbuj ponownie uruchomić tę instalację.
+ru.PGE_CantConnect  =Невозможно подключиться к удалённому серверу! Пожалуйста, проверьте Ваше соединение с Интернетом и попробуйте запустить эту установку снова.
+es.PGE_CantConnect  =No se puede conectar al servidor. Compruebe su conexión de Internet y reinicie está configuración.
+
+en.PGE_UpdateChannel =Updates channel
+ru.PGE_UpdateChannel =Канал обновлений
+es.PGE_UpdateChannel =Canales de actualizaciones
+
+en.PGE_UpdateChannelDesc =Which update channel you want to use?
+ru.PGE_UpdateChannelDesc =Какой канал обновлений вы хотите использовать?
+es.PGE_UpdateChannelDesc =¿Qué canal de actualización quieres usar?
+
+en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install PGE Project, then click 'Next'.
+ru.PGE_UpdateChannelDetail =Пожалуйста, укажите канал обновлений с которого вы хотите установить PGE Project, затем нажмите 'Далее'.
+es.PGE_UpdateChannelDetail =Elija el canal de actualización de donde desea instalar PGE, luego haga clic en 'Siguiente'.
+
+en.PGE_ChanRelease =Release (Stable builds)
+ru.PGE_ChanRelease =Релизный (Стабильные сборки)
+es.PGE_ChanRelease =Reciente (versiones estables)
+
+en.PGE_ChanLab =Laboratory (Fresh experimental builds)
+ru.PGE_ChanLab =Лаборатория (Свежие экспериментальные сборки)
+es.PGE_ChanLab =Laboratorio (versiones experimentales)
+
+en.Type_Typical =Typical installation
+en.Type_Minimal =Minimal installation
+en.Type_Full    =Complete with all config packs
+en.Type_Custom  =Custom installation
+
+ru.Type_Typical =Типичная установка
+ru.Type_Minimal =Минимальная установка
+ru.Type_Full    =Полная со всеми конфиг-пакетами
+ru.Type_Custom  =Пользовательская
+
+es.Type_Typical =Instalación normal
+es.Type_Minimal =Instalación minima
+es.Type_Full    =Instalación con todos los paquetes de configuración
+es.Type_Custom  =Instalaciónpersonalizado
+
 [Types]
-Name: typical; Description: "Typical installation"
-Name: minimal; Description: "Minimal installation"
-Name: full;    Description: "Complete with all config packs"
-Name: custom;  Description: "Custom installation"; Flags: iscustom
+Name: typical; Description: {cm:Type_Typical}
+Name: minimal; Description: {cm:Type_Minimal}
+Name: full;    Description: {cm:Type_Full}
+Name: custom;  Description: {cm:Type_Custom}; Flags: iscustom
 
 [Components]
 Name: devkit; Description: "Development tools";
@@ -276,40 +331,6 @@ StatusMsg: "Installing SMBX-38A Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-smbx38a.zip"" -o""{app}\configs\"" * -r -aoa"; \
   Flags: runhidden runascurrentuser; Components: configs\smbx38a
-
-[CustomMessages]
-en.PGE_NewInstaller =New version of online installer has been detected. Do you want to download and start it?
-de.PGE_NewInstaller =Neue Version des Online-Installers wurde erkannt. Möchten Sie herunterladen und starten?
-pl.PGE_NewInstaller =Znaleziono nową wersję instalatora online. Czy chcesz go pobrać i uruchomić?
-ru.PGE_NewInstaller =Найдена новая версия онлайн-установщика. Хотите загрузить его и запустить?
-es.PGE_NewInstaller =Se ha detectado una nueva versión del instalador en línea. ¿Desea descargarlo?
-
-en.PGE_CantConnect  =Can't connect to remote server! Please check your internet connection and try to start this setup again.
-de.PGE_CantConnect  =Kann keine Verbindung zum Remote-Server herstellen! Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie, dieses Setup erneut zu starten.
-pl.PGE_CantConnect  =Nie można połączyć się z serwerem zdalnym! Sprawdź połączenie z Internetem i spróbuj ponownie uruchomić tę instalację.
-ru.PGE_CantConnect  =Невозможно подключиться к удалённому серверу! Пожалуйста, проверьте Ваше соединение с Интернетом и попробуйте запустить эту установку снова.
-es.PGE_CantConnect  =No se puede conectar al servidor. Compruebe su conexión de Internet y reinicie está configuración.
-
-en.PGE_UpdateChannel =Updates channel
-ru.PGE_UpdateChannel =Канал обновлений
-es.PGE_UpdateChannel =Canales de actualizaciones
-
-en.PGE_UpdateChannelDesc =Which update channel you want to use?
-ru.PGE_UpdateChannelDesc =Какой канал обновлений вы хотите использовать?
-es.PGE_UpdateChannelDesc =¿Qué canal de actualización quieres usar?
-
-en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install PGE Project, then click 'Next'.
-ru.PGE_UpdateChannelDetail =Пожалуйста, укажите канал обновлений с которого вы хотите установить PGE Project, затем нажмите 'Далее'.
-es.PGE_UpdateChannelDetail =Elija el canal de actualización de donde desea instalar PGE, luego haga clic en 'Siguiente'.
-
-en.PGE_ChanRelease =Release (Stable builds)
-ru.PGE_ChanRelease =Релизный (Стабильные сборки)
-es.PGE_ChanRelease =Reciente (versiones estables)
-
-en.PGE_ChanLab =Laboratory (Fresh experimental builds)
-ru.PGE_ChanLab =Лаборатория (Свежие экспериментальные сборки)
-es.PGE_ChanLab =Laboratorio (versiones experimentales)
-
 
 [Code]
 var
