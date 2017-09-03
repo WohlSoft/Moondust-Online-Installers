@@ -282,28 +282,33 @@ en.PGE_NewInstaller =New version of online installer has been detected. Do you w
 de.PGE_NewInstaller =Neue Version des Online-Installers wurde erkannt. Möchten Sie herunterladen und starten?
 pl.PGE_NewInstaller =Znaleziono nową wersję instalatora online. Czy chcesz go pobrać i uruchomić?
 ru.PGE_NewInstaller =Найдена новая версия онлайн-установщика. Хотите загрузить его и запустить?
-es.PGE_NewInstaller =Se ha detectado una nueva versión del instalador en línea. ¿Desea descargarlo e iniciarlo?
+es.PGE_NewInstaller =Se ha detectado una nueva versión del instalador en línea. ¿Desea descargarlo?
 
 en.PGE_CantConnect  =Can't connect to remote server! Please check your internet connection and try to start this setup again.
 de.PGE_CantConnect  =Kann keine Verbindung zum Remote-Server herstellen! Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie, dieses Setup erneut zu starten.
 pl.PGE_CantConnect  =Nie można połączyć się z serwerem zdalnym! Sprawdź połączenie z Internetem i spróbuj ponownie uruchomić tę instalację.
 ru.PGE_CantConnect  =Невозможно подключиться к удалённому серверу! Пожалуйста, проверьте Ваше соединение с Интернетом и попробуйте запустить эту установку снова.
-es.PGE_CantConnect  =No se puede conectar al servidor remoto! Compruebe su conexión a Internet y vuelva a intentar iniciar esta configuración.
+es.PGE_CantConnect  =No se puede conectar al servidor. Compruebe su conexión de Internet y reinicie está configuración.
 
 en.PGE_UpdateChannel =Updates channel
 ru.PGE_UpdateChannel =Канал обновлений
+es.PGE_UpdateChannel =Canales de actualizaciones
 
 en.PGE_UpdateChannelDesc =Which update channel you want to use?
 ru.PGE_UpdateChannelDesc =Какой канал обновлений вы хотите использовать?
+es.PGE_UpdateChannelDesc =¿Qué canal de actualización quieres usar?
 
 en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install PGE Project, then click 'Next'.
 ru.PGE_UpdateChannelDetail =Пожалуйста, укажите канал обновлений с которого вы хотите установить PGE Project, затем нажмите 'Далее'.
+es.PGE_UpdateChannelDetail =Elija el canal de actualización de donde desea instalar PGE, luego haga clic en 'Siguiente'.
 
 en.PGE_ChanRelease =Release (Stable builds)
 ru.PGE_ChanRelease =Релизный (Стабильные сборки)
+es.PGE_ChanRelease =Reciente (versiones estables)
 
 en.PGE_ChanLab =Laboratory (Fresh experimental builds)
 ru.PGE_ChanLab =Лаборатория (Свежие экспериментальные сборки)
+es.PGE_ChanLab =Laboratorio (versiones experimentales)
 
 
 [Code]
