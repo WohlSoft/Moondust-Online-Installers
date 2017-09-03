@@ -4,7 +4,7 @@
 #define MyAppURL "http://wohlsoft.ru/PGE/"
 
 #define INSTALLER_VERSION_CHECK "http://wohlsoft.ru/docs/_laboratory/installers/installer_version.txt"
-#define INSTALLER_VERSION "0.1"
+#define INSTALLER_VERSION "0.11"
 
 #define NEW_INSTALLER_URL "http://wohlsoft.ru/docs/_laboratory/installers/pge-online-installer-innosetup.exe"
 
