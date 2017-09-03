@@ -296,7 +296,7 @@ ru.PGE_UpdateChannel =Канал обновлений
 en.PGE_UpdateChannelDesc =Which update channel you want to use?
 ru.PGE_UpdateChannelDesc =Какой канал обновлений вы хотите использовать?
 
-en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install PGE Project, then click Next.
+en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install PGE Project, then click 'Next'.
 ru.PGE_UpdateChannelDetail =Пожалуйста, укажите канал обновлений с которого вы хотите установить PGE Project, затем нажмите 'Далее'.
 
 en.PGE_ChanRelease =Release (Stable builds)
