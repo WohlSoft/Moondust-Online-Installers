@@ -3,62 +3,14 @@
 #define MyAppPublisher "PGE Project Team"
 #define MyAppURL "http://wohlsoft.ru/PGE/"
 
-#define INSTALLER_VERSION_CHECK "http://wohlsoft.ru/docs/_laboratory/installers/installer_version.txt"
-#define INSTALLER_VERSION "0.11"
-
-#define NEW_INSTALLER_URL "http://wohlsoft.ru/docs/_laboratory/installers/pge-online-installer-innosetup.exe"
-
 ; Root where remember components
 #define REG_ROOT      HKCU
 ; Branch where remember components
 #define REG_KEY       "Software\Wohlhabend Team"
 
-; Stable channel
-#define FILE_URL_COMMON64 "http://wohlsoft.ru/PGE/_downloads/win64/online-install/install-pge-common-dev-win64.zip"
-#define FILE_URL_COMMON32 "http://wohlsoft.ru/PGE/_downloads/win32/online-install/install-pge-common-dev-win32.zip"
-
-#define FILE_URL_EDITOR64 "http://wohlsoft.ru/PGE/_downloads/win64/online-install/install-pge-editor-dev-win64.zip"
-#define FILE_URL_EDITOR32 "http://wohlsoft.ru/PGE/_downloads/win32/online-install/install-pge-editor-dev-win32.zip"
-
-#define FILE_URL_ENGINE64 "http://wohlsoft.ru/PGE/_downloads/win64/online-install/install-pge-engine-dev-win64.zip"
-#define FILE_URL_ENGINE32 "http://wohlsoft.ru/PGE/_downloads/win32/online-install/install-pge-engine-dev-win32.zip"
-
-#define FILE_URL_HELP     "http://wohlsoft.ru/PGE/_downloads/pge_help_standalone.zip"
-
-#define FILE_URL_TOOLS64  "http://wohlsoft.ru/PGE/_downloads/win64/online-install/install-pge-tools-dev-win64.zip"
-#define FILE_URL_TOOLS32  "http://wohlsoft.ru/PGE/_downloads/win32/online-install/install-pge-tools-dev-win32.zip"
-
-#define FILE_URL_CONFIG_SMBXINT       "http://wohlsoft.ru/docs/_configs/SMBXInt/SMBX_Integration.zip"
-#define FILE_URL_CONFIG_SMBX13        "http://wohlsoft.ru/docs/_configs/SMBX13/SMBX_13_compatible.zip"
-#define FILE_URL_CONFIG_A2XT          "http://wohlsoft.ru/docs/_configs/A2XT/A2XT.zip"
-#define FILE_URL_CONFIG_ASMBXT        "http://wohlsoft.ru/docs/_configs/A2MBXT/Raocow_talkhaus_full.zip"
-#define FILE_URL_CONFIG_SMBXREDRAW    "http://wohlsoft.ru/docs/_configs/SMBX_Redrawn/SMBX_Redrawn_full.zip"
-#define FILE_URL_CONFIG_SMBXPANDED    "http://wohlsoft.ru/docs/_configs/SMBXpandedBySednaiur/SMBXpanded_full.zip"
-#define FILE_URL_CONFIG_SMBX38A       "http://wohlsoft.ru/docs/_configs/SMBXby38A/SMBXby38a_full.zip"
-
-; Laboratory channel
-#define LAB_FILE_URL_COMMON64 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-common-dev-win64.zip"
-#define LAB_FILE_URL_COMMON32 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-common-dev-win32.zip"
-
-#define LAB_FILE_URL_EDITOR64 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-editor-dev-win64.zip"
-#define LAB_FILE_URL_EDITOR32 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-editor-dev-win32.zip"
-
-#define LAB_FILE_URL_ENGINE64 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-engine-dev-win64.zip"
-#define LAB_FILE_URL_ENGINE32 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-engine-dev-win32.zip"
-
-#define LAB_FILE_URL_TOOLS64  "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-tools-dev-win64.zip"
-#define LAB_FILE_URL_TOOLS32  "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-tools-dev-win32.zip"
-
-#define LAB_FILE_URL_HELP     "http://wohlsoft.ru/docs/_laboratory/pge_help_standalone.zip"
-
-#define LAB_FILE_URL_CONFIG_SMBXINT     "http://wohlsoft.ru/docs/_laboratory/config_packs/SMBX_Integration.zip"
-#define LAB_FILE_URL_CONFIG_SMBX13      "http://wohlsoft.ru/docs/_laboratory/config_packs/SMBX_13_compatible.zip"
-#define LAB_FILE_URL_CONFIG_A2XT        "http://wohlsoft.ru/docs/_laboratory/config_packs/A2XT.zip"
-#define LAB_FILE_URL_CONFIG_ASMBXT      "http://wohlsoft.ru/docs/_laboratory/config_packs/Raocow_talkhaus_full.zip"
-#define LAB_FILE_URL_CONFIG_SMBXREDRAW  "http://wohlsoft.ru/docs/_laboratory/config_packs/SMBX_Redrawn_full.zip"
-#define LAB_FILE_URL_CONFIG_SMBXPANDED  "http://wohlsoft.ru/docs/_laboratory/config_packs/SMBXpanded_full.zip"
-#define LAB_FILE_URL_CONFIG_SMBX38A     "http://wohlsoft.ru/docs/_laboratory/config_packs/SMBXpanded_full.zip"
-
+#include "includes/version.iss"
+#include "includes/components_urls.iss"
+#include "includes/languages.iss"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -85,84 +37,6 @@ DisableWelcomePage=no
 ArchitecturesInstallIn64BitMode=x64
 CloseApplications=yes
 CloseApplicationsFilter="pge_editor.exe,pge_engine.exe,pge_calibrator.exe,pge_musplay.exe,pge_maintainer.exe"
-
-[Languages]
-Name: "en"; MessagesFile: "compiler:Default.isl"
-Name: "de"; MessagesFile: "compiler:Languages\German.isl"
-Name: "pl"; MessagesFile: "compiler:Languages\Polish.isl"
-Name: "pt_br"; MessagesFile: "compiler:Languages\Portuguese.isl"
-Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
-
-#include <idp.iss>
-#include <idplang\German.iss>
-#include <idplang\Polish.iss>
-#include <idplang\BrazilianPortuguese.iss>
-#include <idplang\Russian.iss>
-#include <idplang\Spanish.iss>
-
-; == Translations credits ==
-; English - Wohlstand
-; German - <Google-translator>
-; Polish - <Google-translator>
-; Portuguese - <Google-translator>
-; Russian - Wohlstand
-; Spanish - Yoshi021
-[CustomMessages]
-; New installer version question
-en.PGE_NewInstaller =New version of online installer has been detected. Do you want to download and start it?
-de.PGE_NewInstaller =Neue Version des Online-Installers wurde erkannt. Möchten Sie herunterladen und starten?
-pl.PGE_NewInstaller =Znaleziono nową wersję instalatora online. Czy chcesz go pobrać i uruchomić?
-ru.PGE_NewInstaller =Найдена новая версия онлайн-установщика. Хотите загрузить его и запустить?
-es.PGE_NewInstaller =Se ha detectado una nueva versión del instalador en línea. ¿Desea descargarlo?
-
-; Connection error message
-en.PGE_CantConnect  =Can't connect to remote server! Please check your internet connection and try to start this setup again.
-de.PGE_CantConnect  =Kann keine Verbindung zum Remote-Server herstellen! Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie, dieses Setup erneut zu starten.
-pl.PGE_CantConnect  =Nie można połączyć się z serwerem zdalnym! Sprawdź połączenie z Internetem i spróbuj ponownie uruchomić tę instalację.
-ru.PGE_CantConnect  =Невозможно подключиться к удалённому серверу! Пожалуйста, проверьте Ваше соединение с Интернетом и попробуйте запустить эту установку снова.
-es.PGE_CantConnect  =No se puede conectar al servidor. Compruebe su conexión de Internet y reinicie está configuración.
-
-; Update channel page title
-en.PGE_UpdateChannel =Updates channel
-ru.PGE_UpdateChannel =Канал обновлений
-es.PGE_UpdateChannel =Canales de actualizaciones
-
-; Update channel page subtitle
-en.PGE_UpdateChannelDesc =Which update channel you want to use?
-ru.PGE_UpdateChannelDesc =Какой канал обновлений вы хотите использовать?
-es.PGE_UpdateChannelDesc =¿Qué canal de actualización quieres usar?
-
-; Update channel page description
-en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install PGE Project, then click 'Next'.
-ru.PGE_UpdateChannelDetail =Пожалуйста, укажите канал обновлений с которого вы хотите установить PGE Project, затем нажмите 'Далее'.
-es.PGE_UpdateChannelDetail =Elija el canal de actualización de donde desea instalar PGE, luego haga clic en 'Siguiente'.
-
-; Update channel titles
-en.PGE_ChanRelease =Release (Stable builds)
-ru.PGE_ChanRelease =Релизный (Стабильные сборки)
-es.PGE_ChanRelease =Reciente (versiones estables)
-
-en.PGE_ChanLab =Laboratory (Fresh experimental builds)
-ru.PGE_ChanLab =Лаборатория (Свежие экспериментальные сборки)
-es.PGE_ChanLab =Laboratorio (versiones experimentales)
-
-; Types of installation
-en.Type_Typical =Typical installation
-ru.Type_Typical =Типичная установка
-es.Type_Typical =Instalación normal
-
-en.Type_Minimal =Minimal installation
-ru.Type_Minimal =Минимальная установка
-es.Type_Minimal =Instalación minima
-
-en.Type_Full    =Complete with all config packs
-ru.Type_Full    =Полная со всеми конфиг-пакетами
-es.Type_Full    =Instalación con todos los paquetes de configuración
-
-en.Type_Custom  =Custom installation
-ru.Type_Custom  =Пользовательская
-es.Type_Custom  =Instalaciónpersonalizado
 
 [Types]
 Name: typical; Description: {cm:Type_Typical}
