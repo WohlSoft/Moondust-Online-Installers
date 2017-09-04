@@ -139,9 +139,6 @@ Name: "{%USERPROFILE}\.PGE_Project\settings"; Flags: uninsneveruninstall
 Name: "{%USERPROFILE}\.PGE_Project\worlds"; Flags: uninsneveruninstall
 
 [Icons]
-Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-
 Name: "{group}\PGE Editor"; Filename: "{app}\pge_editor.exe";  Components: devkit\editor
 Name: "{group}\Changelog (Editor)"; Filename: "{app}\changelog.editor.txt";  Components: devkit\editor
 Name: "{group}\PGE Editor Help"; Filename: "{app}\help\manual_editor.html";  Components: devkit\help
@@ -162,6 +159,8 @@ Name: "{group}\Tools\GIFs2PNG Console tool readme"; Filename: "{app}\GIFs2PNG_Re
 Name: "{group}\Tools\PNG2GIFs Console tool readme"; Filename: "{app}\PNG2GIFs_Readme.txt";  Components: devkit\tools
 Name: "{group}\Tools\LazyFixTool Console tool readme"; Filename: "{app}\LazyFixTool_Readme.txt";  Components: devkit\tools
 
+Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 
 [Run]
 ; === Executable components ===
@@ -219,6 +218,8 @@ var
     UpdateChannelPage: TInputOptionWizardPage;
     UpdateChannelId: Integer;
     IsAlreadyInstalled: Boolean;
+    is64: Boolean;
+    Version: TWindowsVersion;
 
 // IfThen implementation (Pascal has no ternary operations :-P)
 function IfThen(ACondition: Boolean; ATrue: string; AFalse: string): string;
@@ -238,10 +239,23 @@ var
     verFile: string;
     ResultCode: Integer;
 begin
+    GetWindowsVersionEx(Version);
+
+    if (((Version.Major = 5) and (Version.Minor < 1)) or (Version.Major < 5)) then
+    begin
+        SuppressibleMsgBox('Windows XP and higher operating system is required to install PGE Project', mbCriticalError, MB_OK, IDOK);
+        Result := False;
+        Exit;
+    end;
+
+    { Install 64-bit version on Windows Vista and higher only }
+    is64 := (IsWin64 And (Version.Major >= 6));
     UpdateChannelId := 0;
     IsAlreadyInstalled := False;
     verFile := ExpandConstant('{tmp}\installer_version.txt');
+
     idpDownloadFile('{#INSTALLER_VERSION_CHECK}', verFile);
+
     if (FileExists(verFile)) then
     Begin
         FileList := TstringList.Create;
