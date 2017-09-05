@@ -314,7 +314,8 @@ begin
     { Validate certain pages before allowing the user to proceed }
     if CurPageID = UpdateChannelPage.ID then begin
         UpdateChannelId := UpdateChannelPage.SelectedValueIndex
-        case UpdateChannelPage.SelectedValueIndex of
+
+        case UpdateChannelId of
             0: UpdateChannel := 'stable';
             1: UpdateChannel := 'laboratory';
         end;
@@ -339,12 +340,13 @@ begin
 
         if UpdateChannelId = 1 then
         begin
+            //MsgBox('Lab!', mbInformation, MB_OK);
             idpClearFiles();
             idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_COMMON64}', '{#LAB_FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
             idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_EDITOR64}', '{#LAB_FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
             idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_TOOLS64}',  '{#LAB_FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
             idpAddFileComp('{#LAB_FILE_URL_HELP}',      ExpandConstant('{tmp}\help.zip'),    'devkit\help');
-            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_ENGINE64}', '{#LAB_FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
+            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_ENGINE64}', '{#LAB_FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
 
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
