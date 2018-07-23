@@ -44,3 +44,7 @@
 #define LAB_FILE_URL_CONFIG_SMBXPANDED  "http://wohlsoft.ru/docs/_laboratory/config_packs/SMBXpanded_full.zip"
 #define LAB_FILE_URL_CONFIG_SMBX38A     "http://wohlsoft.ru/docs/_laboratory/config_packs/SMBXpanded_full.zip"
 
+; Third-part stuff
+#define THIRDPART_FILE_URL_EPISODE_A2XT_LCDEMOCM "http://wohlsoft.ru/PGE/_downloads/noarch/episodes/Lowsers-Conquest-Demo-v-2-1-with-changed-music-for-A2XT.zip"
+#define THIRDPART_FILE_URL_TIMIDITY_GUS          "http://wohlsoft.ru/PGE/_downloads/noarch/timidity/timidity_gus.zip"
+#define THIRDPART_FILE_URL_TIMIDITY_SNES         "http://wohlsoft.ru/PGE/_downloads/noarch/timidity/SNES-TimidityPatchSet-WIP.zip"

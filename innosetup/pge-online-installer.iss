@@ -55,11 +55,16 @@ Name: engine;         Description: "Runtime Engine [Experimental]"; Types: typic
 
 Name: configs;            Description: "Config packs";
 Name: configs\a2xt;       Description: "A2XT"; Types: typical full custom
+Name: configs\a2xt\lcdemocm;  Description: "Lowser's Conquest Demo v 2.1 [changed music]"; Types: typical full minimal custom
 Name: configs\smbxint;    Description: "SMBX Integration"; Types: full minimal custom
 Name: configs\smbx13;     Description: "SMBX 1.3 Compatibility"; Types: full
 Name: configs\smbxredraw; Description: "SMBX Redrawn"; Types: full
 Name: configs\smbxpanded; Description: "SMB-Xpanded"; Types: full
 Name: configs\smbx38a;    Description: "SMBX-38A"; Types: full
+
+Name: timidity;           Description: "Timidity patch sets";
+Name: timidity\gus;       Description: "GUS patches set"; Types: typical full custom; Flags: exclusive
+Name: timidity\snes;      Description: "Selection of patches from various SNES games [WIP]"; Flags: exclusive
 
 [Registry]
 Root: HKCU; Subkey: "Software\PGE Team"; Flags: uninsdeletekey;
@@ -144,20 +149,22 @@ Name: "{group}\Changelog (Editor)"; Filename: "{app}\changelog.editor.txt";  Com
 Name: "{group}\PGE Editor Help"; Filename: "{app}\help\manual_editor.html";  Components: devkit\help
 
 Name: "{group}\PGE Engine"; Filename: "{app}\pge_engine.exe";  Components: engine
-Name: "{group}\PGE Engine Readme"; Filename: "{app}\GIFs2PNG_Readme.txt";  Components: engine
+Name: "{group}\PGE Engine Readme"; Filename: "{app}\pge_engine.readme.txt";  Components: engine
+Name: "{group}\PGE Engine License (GPLv3)"; Filename: "{app}\pge_engine.license.gpl3.txt";  Components: engine
+Name: "{group}\PGE Engine License (MIT)"; Filename: "{app}\pge_engine.license.mit.txt";  Components: engine
 Name: "{group}\Changelog (Engine)"; Filename: "{app}\changelog.engine.txt";  Components: engine
 
 Name: "{group}\User data directory"; Filename: "{%USERPROFILE}\.PGE_Project";
 Name: "{group}\Worlds directory"; Filename: "{%USERPROFILE}\.PGE_Project\worlds";
 
-Name: "{group}\License"; Filename: "{app}\GPLv3.txt";
+Name: "{group}\License (GPLv3)"; Filename: "{app}\GPLv3.txt";
 
 Name: "{group}\Tools\Playable characters calibrator"; Filename: "{app}\pge_calibrator.exe";  Components: devkit\tools
 Name: "{group}\Tools\Maintainer"; Filename: "{app}\pge_maintainer.exe";  Components: devkit\tools
 Name: "{group}\Tools\Music testing player"; Filename: "{app}\pge_musplay.exe";  Components: devkit\tools
-Name: "{group}\Tools\GIFs2PNG Console tool readme"; Filename: "{app}\GIFs2PNG_Readme.txt";  Components: devkit\tools
-Name: "{group}\Tools\PNG2GIFs Console tool readme"; Filename: "{app}\PNG2GIFs_Readme.txt";  Components: devkit\tools
-Name: "{group}\Tools\LazyFixTool Console tool readme"; Filename: "{app}\LazyFixTool_Readme.txt";  Components: devkit\tools
+Name: "{group}\Tools\GIFs2PNG Console tool readme"; Filename: "{app}\GIFs2PNG.readme.txt";  Components: devkit\tools
+Name: "{group}\Tools\PNG2GIFs Console tool readme"; Filename: "{app}\PNG2GIFs.readme.txt";  Components: devkit\tools
+Name: "{group}\Tools\LazyFixTool Console tool readme"; Filename: "{app}\LazyFixTool.readme.txt";  Components: devkit\tools
 
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
@@ -192,6 +199,11 @@ StatusMsg: "Installing A2XT Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-a2xt.zip"" -o""{app}\configs\"" * -r -aoa"; \
   Flags: runhidden runascurrentuser; Components: configs\a2xt
+StatusMsg: "Installing Lowser's Conquest Demo v 2.1..."; \
+  Filename: {tmp}\7za.exe; \
+  Parameters: "x ""{tmp}\episode-lcdemocm.zip"" -o""{%USERPROFILE}\.PGE_Project\worlds\"" * -r -aoa"; \
+  Flags: runhidden runascurrentuser; Components: configs\a2xt\lcdemocm
+
 StatusMsg: "Installing SMBX Integration Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-smbxint.zip"" -o""{app}\configs\"" * -r -aoa"; \
@@ -212,6 +224,15 @@ StatusMsg: "Installing SMBX-38A Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-smbx38a.zip"" -o""{app}\configs\"" * -r -aoa"; \
   Flags: runhidden runascurrentuser; Components: configs\smbx38a
+
+StatusMsg: "Installing Timidity SNES Patch Set..."; \
+  Filename: {tmp}\7za.exe; \
+  Parameters: "x ""{tmp}\timidity-snes.zip"" -o""{app}\"" * -r -aoa"; \
+  Flags: runhidden runascurrentuser; Components: timidity\snes
+StatusMsg: "Installing Timidity GUS Patch Set..."; \
+  Filename: {tmp}\7za.exe; \
+  Parameters: "x ""{tmp}\timidity-gus.zip"" -o""{app}\"" * -r -aoa"; \
+  Flags: runhidden runascurrentuser; Components: timidity\gus
 
 [Code]
 var
@@ -354,6 +375,12 @@ begin
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXPANDED}',  ExpandConstant('{tmp}\config-smbxpanded.zip'), 'configs\smbxpanded');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBX38A}', ExpandConstant('{tmp}\config-smbx38a.zip'),        'configs\smbx38a');
+
+            idpAddFileComp('{#THIRDPART_FILE_URL_EPISODE_A2XT_LCDEMOCM}', ExpandConstant('{tmp}\episode-lcdemocm.zip'), 'configs\a2xt\lcdemocm');
+
+            idpAddFileComp('{#THIRDPART_FILE_URL_TIMIDITY_GUS}',  ExpandConstant('{tmp}\timidity-gus.zip'),  'timidity\gus');
+            idpAddFileComp('{#THIRDPART_FILE_URL_TIMIDITY_SNES}', ExpandConstant('{tmp}\timidity-snes.zip'), 'timidity\snes');
+
             idpDownloadAfter(wpReady);
         end;
     end;
