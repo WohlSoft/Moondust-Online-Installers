@@ -269,8 +269,8 @@ begin
         Exit;
     end;
 
-    { Install 64-bit version on Windows Vista and higher only }
-    is64 := (IsWin64 And (Version.Major >= 6));
+    { Install 64-bit version on Windows 7 and higher only }
+    is64 := (IsWin64 And ((Version.Major >= 7) Or ((Version.Major = 6) And (Version.Minor >= 1))));
     UpdateChannelId := 0;
     IsAlreadyInstalled := False;
     verFile := ExpandConstant('{tmp}\installer_version.txt');
@@ -344,11 +344,11 @@ begin
         if UpdateChannelId = 0 then
         begin
             idpClearFiles();
-            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_COMMON64}', '{#FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
-            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_EDITOR64}', '{#FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
-            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_TOOLS64}',  '{#FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
+            idpAddFileComp(IfThen(is64, '{#FILE_URL_COMMON64}', '{#FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
+            idpAddFileComp(IfThen(is64, '{#FILE_URL_EDITOR64}', '{#FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
+            idpAddFileComp(IfThen(is64, '{#FILE_URL_TOOLS64}',  '{#FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
             idpAddFileComp('{#FILE_URL_HELP}',      ExpandConstant('{tmp}\help.zip'),    'devkit\help');
-            idpAddFileComp(IfThen(IsWin64, '{#FILE_URL_ENGINE64}', '{#FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
+            idpAddFileComp(IfThen(is64, '{#FILE_URL_ENGINE64}', '{#FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
 
             idpAddFileComp('{#FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
             idpAddFileComp('{#FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
@@ -363,11 +363,11 @@ begin
         begin
             //MsgBox('Lab!', mbInformation, MB_OK);
             idpClearFiles();
-            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_COMMON64}', '{#LAB_FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
-            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_EDITOR64}', '{#LAB_FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
-            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_TOOLS64}',  '{#LAB_FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
+            idpAddFileComp(IfThen(is64, '{#LAB_FILE_URL_COMMON64}', '{#LAB_FILE_URL_COMMON32}'),  ExpandConstant('{tmp}\runtime.zip'), 'devkit\runtime');
+            idpAddFileComp(IfThen(is64, '{#LAB_FILE_URL_EDITOR64}', '{#LAB_FILE_URL_EDITOR32}'),  ExpandConstant('{tmp}\editor.zip'),  'devkit\editor');
+            idpAddFileComp(IfThen(is64, '{#LAB_FILE_URL_TOOLS64}',  '{#LAB_FILE_URL_TOOLS32}'),   ExpandConstant('{tmp}\tools.zip'),   'devkit\tools');
             idpAddFileComp('{#LAB_FILE_URL_HELP}',      ExpandConstant('{tmp}\help.zip'),    'devkit\help');
-            idpAddFileComp(IfThen(IsWin64, '{#LAB_FILE_URL_ENGINE64}', '{#LAB_FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
+            idpAddFileComp(IfThen(is64, '{#LAB_FILE_URL_ENGINE64}', '{#LAB_FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
 
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
