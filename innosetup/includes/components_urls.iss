@@ -22,17 +22,17 @@
 #define FILE_URL_CONFIG_SMBX38A       "http://wohlsoft.ru/docs/_configs/SMBXby38A/SMBXby38a_full.zip"
 
 ; Laboratory channel
-#define LAB_FILE_URL_COMMON64 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-common-master-win64.zip"
-#define LAB_FILE_URL_COMMON32 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-common-master-win32.zip"
+#define LAB_FILE_URL_COMMON64 "http://builds.wohlsoft.ru/win32/moondust-win64/install-pge-common-master-win64.zip"
+#define LAB_FILE_URL_COMMON32 "http://builds.wohlsoft.ru/win32/moondust-win32/install-pge-common-master-win32.zip"
 
-#define LAB_FILE_URL_EDITOR64 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-editor-master-win64.zip"
-#define LAB_FILE_URL_EDITOR32 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-editor-master-win32.zip"
+#define LAB_FILE_URL_EDITOR64 "http://builds.wohlsoft.ru/win32/moondust-win64/install-pge-editor-master-win64.zip"
+#define LAB_FILE_URL_EDITOR32 "http://builds.wohlsoft.ru/win32/moondust-win32/install-pge-editor-master-win32.zip"
 
-#define LAB_FILE_URL_ENGINE64 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-engine-master-win64.zip"
-#define LAB_FILE_URL_ENGINE32 "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-engine-master-win32.zip"
+#define LAB_FILE_URL_ENGINE64 "http://builds.wohlsoft.ru/win32/moondust-win64/install-pge-engine-master-win64.zip"
+#define LAB_FILE_URL_ENGINE32 "http://builds.wohlsoft.ru/win32/moondust-win32/install-pge-engine-master-win32.zip"
 
-#define LAB_FILE_URL_TOOLS64  "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w64/_packed/install-pge-tools-master-win64.zip"
-#define LAB_FILE_URL_TOOLS32  "http://wohlsoft.ru/docs/_laboratory/_Builds/win32/bin-w32/_packed/install-pge-tools-master-win32.zip"
+#define LAB_FILE_URL_TOOLS64  "http://builds.wohlsoft.ru/win32/moondust-win64/install-pge-tools-master-win64.zip"
+#define LAB_FILE_URL_TOOLS32  "http://builds.wohlsoft.ru/win32/moondust-win32/install-pge-tools-master-win32.zip"
 
 #define LAB_FILE_URL_HELP     "http://wohlsoft.ru/docs/_laboratory/pge_help_standalone.zip"
 
