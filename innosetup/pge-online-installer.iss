@@ -1,7 +1,7 @@
-﻿#define MyAppName "PGE Project"
+﻿#define MyAppName "Moondust (PGE Project)"
 #define MyAppVersion "0.4.1"
 #define MyAppPublisher "PGE Project Team"
-#define MyAppURL "http://wohlsoft.ru/PGE/"
+#define MyAppURL "https://wohlsoft.ru/PGE/"
 
 ; Root where remember components
 #define REG_ROOT      HKCU
