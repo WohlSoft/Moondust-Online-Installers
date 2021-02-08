@@ -136,12 +136,7 @@ Type: filesandordirs; Name: "{app}\*.*"
 
 [Dirs]
 Name: "{app}\configs"
-Name: "{%USERPROFILE}\.PGE_Project"; Flags: uninsneveruninstall
-Name: "{%USERPROFILE}\.PGE_Project\logs"; Flags: uninsneveruninstall
-Name: "{%USERPROFILE}\.PGE_Project\screenshots"; Flags: uninsneveruninstall
-Name: "{%USERPROFILE}\.PGE_Project\editor-plugins"; Flags: uninsneveruninstall
-Name: "{%USERPROFILE}\.PGE_Project\settings"; Flags: uninsneveruninstall
-Name: "{%USERPROFILE}\.PGE_Project\worlds"; Flags: uninsneveruninstall
+Name: "{app}\worlds"
 
 [Icons]
 Name: "{group}\PGE Editor"; Filename: "{app}\pge_editor.exe";  Components: devkit\editor
@@ -153,9 +148,6 @@ Name: "{group}\PGE Engine Readme"; Filename: "{app}\pge_engine.readme.txt";  Com
 Name: "{group}\PGE Engine License (GPLv3)"; Filename: "{app}\pge_engine.license.gpl3.txt";  Components: engine
 Name: "{group}\PGE Engine License (MIT)"; Filename: "{app}\pge_engine.license.mit.txt";  Components: engine
 Name: "{group}\Changelog (Engine)"; Filename: "{app}\changelog.engine.txt";  Components: engine
-
-Name: "{group}\User data directory"; Filename: "{%USERPROFILE}\.PGE_Project";
-Name: "{group}\Worlds directory"; Filename: "{%USERPROFILE}\.PGE_Project\worlds";
 
 Name: "{group}\License (GPLv3)"; Filename: "{app}\GPLv3.txt";
 
@@ -201,7 +193,7 @@ StatusMsg: "Installing A2XT Config Pack..."; \
   Flags: runhidden runascurrentuser; Components: configs\a2xt
 StatusMsg: "Installing Lowser's Conquest Demo v 2.1..."; \
   Filename: {tmp}\7za.exe; \
-  Parameters: "x ""{tmp}\episode-lcdemocm.zip"" -o""{%USERPROFILE}\.PGE_Project\worlds\"" * -r -aoa"; \
+  Parameters: "x ""{tmp}\episode-lcdemocm.zip"" -o""{app}\worlds\"" * -r -aoa"; \
   Flags: runhidden runascurrentuser; Components: configs\a2xt\lcdemocm
 
 StatusMsg: "Installing SMBX Integration Config Pack..."; \
