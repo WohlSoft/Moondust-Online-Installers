@@ -76,3 +76,11 @@ es.Type_Full    =Instalación con todos los paquetes de configuración
 en.Type_Custom  =Custom installation
 ru.Type_Custom  =Пользовательская
 es.Type_Custom  =Instalaciónpersonalizado
+
+en.DestinationLocation =Destination location
+ru.DestinationLocation =Путь установки
+es.DestinationLocation =Ubicación de destino
+
+en.UserDirectoryPath =User directory path
+ru.UserDirectoryPath =Путь к пользовательской директории
+es.UserDirectoryPath =Ruta del directorio de usuarios

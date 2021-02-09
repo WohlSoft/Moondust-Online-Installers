@@ -1,5 +1,5 @@
 ﻿#define MyAppName "Moondust (PGE Project)"
-#define MyAppVersion "0.4.1"
+#define MyAppVersion "0.4.3"
 #define MyAppPublisher "PGE Project Team"
 #define MyAppURL "https://wohlsoft.ru/PGE/"
 
@@ -377,6 +377,41 @@ begin
         end;
     end;
     Result := True;
+end;
+
+function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
+begin
+    Result := ''
+
+    if MemoUserInfoInfo <> '' then begin
+        Result := MemoUserInfoInfo + Newline + NewLine;
+    end;
+
+    if MemoDirInfo <> '' then begin
+        Result := Result + MemoDirInfo + Newline + NewLine;
+    end;
+
+    if MemoTypeInfo <> '' then begin
+        Result := Result + MemoTypeInfo + Newline + NewLine;
+    end;
+
+    Result := Result + ExpandConstant('{cm:DestinationLocation}') + ':' + NewLine +
+              Space + ExpandConstant('{app}') + NewLine + NewLine;
+
+    Result := Result + ExpandConstant('{cm:UserDirectoryPath}') + ':' + NewLine +
+              Space + ExpandConstant('{%USERPROFILE}\.PGE_Project') + NewLine + NewLine;
+
+    if MemoComponentsInfo <> '' then begin
+        Result := Result + MemoComponentsInfo + Newline + NewLine;
+    end;
+
+    if MemoGroupInfo <> '' then begin
+        Result := Result + MemoGroupInfo + Newline + NewLine;
+    end;
+
+    if MemoTasksInfo <> '' then begin
+        Result := Result + MemoTasksInfo + Newline + NewLine;
+    end;
 end;
 
 procedure RegisterPreviousData(PreviousDataKey: Integer);
