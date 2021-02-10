@@ -83,4 +83,4 @@ es.DestinationLocation =Ubicación de destino
 
 en.UserDirectoryPath =User directory path
 ru.UserDirectoryPath =Путь к пользовательской директории
-es.UserDirectoryPath =Ruta del directorio de usuarios
+es.UserDirectoryPath =Ruta de directorio del usuario
