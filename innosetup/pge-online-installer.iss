@@ -1,7 +1,7 @@
-﻿#define MyAppName "Moondust (PGE Project)"
+﻿#define MyAppName "Moondust Project"
 #define MyAppVersion "0.4.3"
-#define MyAppPublisher "PGE Project Team"
-#define MyAppURL "https://wohlsoft.ru/PGE/"
+#define MyAppPublisher "Moondust Project Team"
+#define MyAppURL "https://wohlsoft.ru/projects/Moondust/"
 
 ; Root where remember components
 #define REG_ROOT      HKCU
@@ -56,6 +56,7 @@ Name: engine;         Description: "Runtime Engine [Experimental]"; Types: typic
 Name: configs;            Description: "Config packs";
 Name: configs\a2xt;       Description: "A2XT"; Types: typical full custom
 Name: configs\a2xt\lcdemocm;  Description: "Lowser's Conquest Demo v 2.1 [changed music]"; Types: typical full minimal custom
+Name: configs\thextechsdk;  Description: "TheXTech SDK [Laboratory only!]"; Types: full minimal custom
 Name: configs\smbxint;    Description: "SMBX Integration"; Types: full minimal custom
 Name: configs\smbx13;     Description: "SMBX 1.3 Compatibility"; Types: full
 Name: configs\smbxredraw; Description: "SMBX Redrawn"; Types: full
@@ -139,21 +140,21 @@ Name: "{app}\configs"
 Name: "{app}\worlds"
 
 [Icons]
-Name: "{group}\PGE Editor"; Filename: "{app}\pge_editor.exe";  Components: devkit\editor
+Name: "{group}\Moondust Editor"; Filename: "{app}\pge_editor.exe";  Components: devkit\editor
 Name: "{group}\Changelog (Editor)"; Filename: "{app}\changelog.editor.txt";  Components: devkit\editor
-Name: "{group}\PGE Editor Help"; Filename: "{app}\help\manual_editor.html";  Components: devkit\help
+Name: "{group}\Moondust Editor Help"; Filename: "{app}\help\manual_editor.html";  Components: devkit\help
 
-Name: "{group}\PGE Engine"; Filename: "{app}\pge_engine.exe";  Components: engine
-Name: "{group}\PGE Engine Readme"; Filename: "{app}\pge_engine.readme.txt";  Components: engine
-Name: "{group}\PGE Engine License (GPLv3)"; Filename: "{app}\pge_engine.license.gpl3.txt";  Components: engine
-Name: "{group}\PGE Engine License (MIT)"; Filename: "{app}\pge_engine.license.mit.txt";  Components: engine
+Name: "{group}\Moondust Engine"; Filename: "{app}\pge_engine.exe";  Components: engine
+Name: "{group}\Moondust Engine Readme"; Filename: "{app}\pge_engine.readme.txt";  Components: engine
+Name: "{group}\Moondust Engine License (GPLv3)"; Filename: "{app}\pge_engine.license.gpl3.txt";  Components: engine
+Name: "{group}\Moondust Engine License (MIT)"; Filename: "{app}\pge_engine.license.mit.txt";  Components: engine
 Name: "{group}\Changelog (Engine)"; Filename: "{app}\changelog.engine.txt";  Components: engine
 
 Name: "{group}\License (GPLv3)"; Filename: "{app}\GPLv3.txt";
 
-Name: "{group}\Tools\Playable characters calibrator"; Filename: "{app}\pge_calibrator.exe";  Components: devkit\tools
+Name: "{group}\Tools\Character Calibrator"; Filename: "{app}\pge_calibrator.exe";  Components: devkit\tools
 Name: "{group}\Tools\Maintainer"; Filename: "{app}\pge_maintainer.exe";  Components: devkit\tools
-Name: "{group}\Tools\Music testing player"; Filename: "{app}\pge_musplay.exe";  Components: devkit\tools
+Name: "{group}\Tools\Moondust Music Player"; Filename: "{app}\pge_musplay.exe";  Components: devkit\tools
 Name: "{group}\Tools\GIFs2PNG Console tool readme"; Filename: "{app}\GIFs2PNG.readme.txt";  Components: devkit\tools
 Name: "{group}\Tools\PNG2GIFs Console tool readme"; Filename: "{app}\PNG2GIFs.readme.txt";  Components: devkit\tools
 Name: "{group}\Tools\LazyFixTool Console tool readme"; Filename: "{app}\LazyFixTool.readme.txt";  Components: devkit\tools
@@ -200,6 +201,10 @@ StatusMsg: "Installing SMBX Integration Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-smbxint.zip"" -o""{app}\configs\"" * -r -aoa"; \
   Flags: runhidden runascurrentuser; Components: configs\smbxint
+StatusMsg: "Installing TheXTech SDK Config Pack..."; \
+  Filename: {tmp}\7za.exe; \
+  Parameters: "x ""{tmp}\config-thextechsdk.zip"" -o""{app}\configs\"" * -r -aoa"; \
+  Flags: runhidden runascurrentuser; Components: configs\thextechsdk
 StatusMsg: "Installing SMBX 1.3 Compatibility Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-smbx13.zip"" -o""{app}\configs\"" * -r -aoa"; \
@@ -363,6 +368,7 @@ begin
 
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_THEXTECHSDK}', ExpandConstant('{tmp}\config-thextechsdk.zip'), 'configs\thextechsdk');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBX13}',  ExpandConstant('{tmp}\config-smbx13.zip'),         'configs\smbx13');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXPANDED}',  ExpandConstant('{tmp}\config-smbxpanded.zip'), 'configs\smbxpanded');
