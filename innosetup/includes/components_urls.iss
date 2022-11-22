@@ -14,6 +14,7 @@
 #define FILE_URL_TOOLS32  "http://wohlsoft.ru/projects/Moondust/_downloads/win32/online-install/install-pge-tools-stable-win32.zip"
 
 #define FILE_URL_CONFIG_SMBXINT       "http://wohlsoft.ru/docs/_configs/SMBXInt/SMBX_Integration.zip"
+#define FILE_URL_CONFIG_THEXTECHSDK   "http://wohlsoft.ru/docs/_configs/XTechSDK/TheXTech-SDK.zip"
 #define FILE_URL_CONFIG_SMBX13        "http://wohlsoft.ru/docs/_configs/SMBX13/SMBX_13_compatible.zip"
 #define FILE_URL_CONFIG_A2XT          "http://wohlsoft.ru/docs/_configs/A2XT/A2XT.zip"
 #define FILE_URL_CONFIG_ASMBXT        "http://wohlsoft.ru/docs/_configs/A2MBXT/Raocow_talkhaus_full.zip"

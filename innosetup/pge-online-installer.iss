@@ -56,12 +56,13 @@ Name: engine;         Description: "Runtime Engine [Experimental]"; Types: typic
 Name: configs;            Description: "Config packs";
 Name: configs\a2xt;       Description: "A2XT"; Types: typical full custom
 Name: configs\a2xt\lcdemocm;  Description: "Lowser's Conquest Demo v 2.1 [changed music]"; Types: typical full minimal custom
-Name: configs\thextechsdk;  Description: "TheXTech SDK [Laboratory only!]"; Types: full minimal custom
-Name: configs\smbxint;    Description: "SMBX Integration"; Types: full minimal custom
+Name: configs\thextechsdk;  Description: "TheXTech SDK"; Types: full minimal custom
 Name: configs\smbx13;     Description: "SMBX 1.3 Compatibility"; Types: full
 Name: configs\smbxredraw; Description: "SMBX Redrawn"; Types: full
 Name: configs\smbxpanded; Description: "SMB-Xpanded"; Types: full
 Name: configs\smbx38a;    Description: "SMBX-38A"; Types: full
+Name: configs\obsolete;   Description: "Obsolete packs";
+Name: configs\obsolete\smbxint;  Description: "SMBX Integration";
 
 Name: timidity;           Description: "Timidity patch sets";
 Name: timidity\gus;       Description: "GUS patches set"; Types: typical full custom; Flags: exclusive
@@ -200,7 +201,7 @@ StatusMsg: "Installing Lowser's Conquest Demo v 2.1..."; \
 StatusMsg: "Installing SMBX Integration Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-smbxint.zip"" -o""{app}\configs\"" * -r -aoa"; \
-  Flags: runhidden runascurrentuser; Components: configs\smbxint
+  Flags: runhidden runascurrentuser; Components: configs\obsolete\smbxint
 StatusMsg: "Installing TheXTech SDK Config Pack..."; \
   Filename: {tmp}\7za.exe; \
   Parameters: "x ""{tmp}\config-thextechsdk.zip"" -o""{app}\configs\"" * -r -aoa"; \
@@ -348,7 +349,8 @@ begin
             idpAddFileComp(IfThen(is64, '{#FILE_URL_ENGINE64}', '{#FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
 
             idpAddFileComp('{#FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
-            idpAddFileComp('{#FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
+            idpAddFileComp('{#FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\obsolete\smbxint');
+            idpAddFileComp('{#FILE_URL_CONFIG_THEXTECHSDK}', ExpandConstant('{tmp}\config-thextechsdk.zip'),'configs\thextechsdk');
             idpAddFileComp('{#FILE_URL_CONFIG_SMBX13}',  ExpandConstant('{tmp}\config-smbx13.zip'),         'configs\smbx13');
             idpAddFileComp('{#FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');
             idpAddFileComp('{#FILE_URL_CONFIG_SMBXPANDED}',  ExpandConstant('{tmp}\config-smbxpanded.zip'), 'configs\smbxpanded');
@@ -367,7 +369,7 @@ begin
             idpAddFileComp(IfThen(is64, '{#LAB_FILE_URL_ENGINE64}', '{#LAB_FILE_URL_ENGINE32}'),  ExpandConstant('{tmp}\engine.zip'),  'engine');
 
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_A2XT}',    ExpandConstant('{tmp}\config-a2xt.zip'),           'configs\a2xt');
-            idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\smbxint');
+            idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXINT}', ExpandConstant('{tmp}\config-smbxint.zip'),        'configs\obsolete\smbxint');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_THEXTECHSDK}', ExpandConstant('{tmp}\config-thextechsdk.zip'), 'configs\thextechsdk');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBX13}',  ExpandConstant('{tmp}\config-smbx13.zip'),         'configs\smbx13');
             idpAddFileComp('{#LAB_FILE_URL_CONFIG_SMBXREDRAW}',  ExpandConstant('{tmp}\config-smbxredraw.zip'), 'configs\smbxredraw');

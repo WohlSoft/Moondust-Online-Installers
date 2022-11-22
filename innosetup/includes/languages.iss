@@ -47,9 +47,9 @@ ru.PGE_UpdateChannelDesc =Какой канал обновлений вы хот
 es.PGE_UpdateChannelDesc =¿Qué canal de actualización quieres usar?
 
 ; Update channel page description
-en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install PGE Project, then click 'Next'.
-ru.PGE_UpdateChannelDetail =Пожалуйста, укажите канал обновлений с которого вы хотите установить PGE Project, затем нажмите 'Далее'.
-es.PGE_UpdateChannelDetail =Elija el canal de actualización de donde desea instalar PGE, luego haga clic en 'Siguiente'.
+en.PGE_UpdateChannelDetail =Please specify update channel from which you want to install Moondust Project, then click 'Next'.
+ru.PGE_UpdateChannelDetail =Пожалуйста, укажите канал обновлений с которого вы хотите установить Moondust Project, затем нажмите 'Далее'.
+es.PGE_UpdateChannelDetail =Elija el canal de actualización de donde desea instalar Moondust, luego haga clic en 'Siguiente'.
 
 ; Update channel titles
 en.PGE_ChanRelease =Release (Stable builds)
